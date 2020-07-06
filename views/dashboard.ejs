@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>StoryBook</title>
+</head>
+<body>
+
+    <%- include('./partials/_header') -%>
+    <div class="container">
+        <h6>Dashboard</h6>
+        <h3>Welcome <%= name %></h3>
+        <p>Here you can see your stories</p>
+
+        <% if (stories.length > 0){ %>
+            <% stories.forEach((story, index) => { %>
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>status</th>
+                            <th></th>
+                        </tr>
+                        
+                    </thead>
+                        <tr>
+                            <td><a href="/stories/<%= _id %>"><%= title %></a></td>
+                            <td><%= createdAt %></td>
+                            <td><span class="dash-span">%= status %></span></td>
+                            <td></td>
+                        </tr>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            <%})%>
+        <%}else{%>
+            <p>You don't have stories yet</p>
+        <%}%>
+        
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- init materialize sidebar -->
+    <script>
+        M.Sidenav.init(document.querySelectorAll('.sidenav'));
+    </script>
+</body>
+</html>
