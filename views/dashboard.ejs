@@ -8,28 +8,30 @@
         <p>Here you can see your stories</p>
 
         <% if (stories.length > 0){ %>
-            <% stories.forEach((story, index) => { %>
-                <table class="striped">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Date</th>
-                            <th>status</th>
-                            <th></th>
-                        </tr>
+            
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>status</th>
+                        <th></th>
+                    </tr>
                         
-                    </thead>
+                </thead>
+                <tbody>
+                    <% stories.forEach((story, index) => { %>
                         <tr>
-                            <td><a href="/stories/<%= _id %>"><%= title %></a></td>
-                            <td><%= createdAt %></td>
-                            <td><span class="dash-span">%= status %></span></td>
+                            <td><a href="/stories/<%= story._id %>"><%= story.title %></a></td>
+                            <td><%= dateFormat(story.createAt, 'MMMM Do YYYY, h:mm:ss a') %></td>
+                            <td><%= story.status %></td>
                             <td></td>
                         </tr>
-                    <tbody>
+                    <%})%>
+                <tbody>
 
-                    </tbody>
                 </table>
-            <%})%>
+            
         <%}else{%>
             <p>You don't have stories yet</p>
         <%}%>

@@ -21,6 +21,14 @@ connectDB()
 // init express app
 const app = express()
 
+// body parse
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
+// add some helper methods
+const { formatDate } = require('./helpers/date')
+app.locals.dateFormat = formatDate
+
 
 // use dev morgan to log HTTP requests
 if(process.env.NODE_ENV === 'development'){
