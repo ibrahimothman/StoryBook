@@ -1,0 +1,37 @@
+<%- include('../partials/_header') -%>
+<div class="container">
+    <h1>Stories</h1>
+    <div class="row">
+        <% if(stories.length > 0){ %>
+            <% stories.forEach(story => { %>
+
+                <div class="col s12 m4">
+                    <div class="card">
+                        <div class="card-image">
+                            <% if (story.user._id.toString() === loggedUser._id.toString()) {%>
+                                <a href="/stories/<%= story._id%>/edit" class="btn-floating halfway-fab blue"><i class="fas fa-edit fa-small"></i></a>
+                            <%}%>
+                        </div>
+                        <div class="card-content center-align">
+                            <h5><%= story.title %></h5>
+                            <p><%= truncate(stripeTags(story.body), 50) %></p>
+                            
+                            <br>
+                            <div class="chip">
+                                <img src="<%= story.user.image %>" alt="user image">
+                                <a href="/stories/user/<%= story.user._id %>"><%= story.user.displayName %></a>
+                            </div>
+                        </div>
+                        <div class="card-action center-align">
+                            <a href="/stories/<%= story._id %>" class="btn grey">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            <%})%>
+        <%}else{%>
+            <p>No public stories</p>
+        <%}%>      
+    </div>
+    
+</div>
+<%- include('../partials/_footer') -%>

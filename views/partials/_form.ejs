@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="input-field">
+        <input type="text" id="title" name="title" value="<%= story? story.title : '' %>">
+        <label for="title">Title</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="input-field">
+        <select id="status" name="status">
+            <option <%= story? story.status === 'public' ? 'selected' : '' : 'selected' %> value="public">Public</option>
+            <option <%= story? story.status === 'private' ? 'selected' : '' : '' %>  value="private">Private</option>
+        </select>
+        <label for="status">Status</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="input-field">
+        <h5>Tell Us Your Story:</h5>
+        <textarea id="body" name="body">
+            <%= story? story.body : '' %>
+        </textarea>
+    </div>
+</div>

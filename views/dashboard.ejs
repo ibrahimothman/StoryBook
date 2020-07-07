@@ -23,9 +23,20 @@
                     <% stories.forEach((story, index) => { %>
                         <tr>
                             <td><a href="/stories/<%= story._id %>"><%= story.title %></a></td>
-                            <td><%= dateFormat(story.createAt, 'MMMM Do YYYY, h:mm:ss a') %></td>
+                            <td><%= formatDate(story.createAt) %></td>
                             <td><%= story.status %></td>
-                            <td></td>
+                            <td>
+                                <a href="/stories/<%= story._id %>/edit" class="btn btn-float">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                
+                                <form action="/stories/<%= story._id %>" method="POST" id="delete-form">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn red">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     <%})%>
                 <tbody>
